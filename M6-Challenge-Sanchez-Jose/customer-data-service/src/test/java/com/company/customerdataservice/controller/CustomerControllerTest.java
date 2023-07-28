@@ -48,14 +48,14 @@ public class CustomerControllerTest {
 
     @Test
     void deleteCustomer() throws Exception{
-        mockMvc.perform(delete("/customers"))
+        mockMvc.perform(delete("/customers/{id}"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
     void getCustomerById() throws Exception{
-        mockMvc.perform(get("/customers"))
+        mockMvc.perform(get("/customers/{id}"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
