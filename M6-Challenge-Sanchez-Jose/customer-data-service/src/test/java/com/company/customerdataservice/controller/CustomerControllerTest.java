@@ -33,7 +33,7 @@ public class CustomerControllerTest {
     }
 
     @Test
-    void ShouldaddCustomer() throws Exception{
+    void ShouldAddCustomer() throws Exception{
         mockMvc.perform(post("/customers"))
                 .andDo(print())
                 .andExpect(status().isOk());
