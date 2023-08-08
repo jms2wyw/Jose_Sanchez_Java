@@ -15,28 +15,27 @@ public class CustomerController {
     CustomerRepository repo;
 
 
-    @PostMapping("/customers")
+    @PostMapping("/customer")
     @ResponseStatus(HttpStatus.CREATED)
     public Customer addCustomer(@RequestBody Customer Customer) {
         return repo.save(Customer);
     }
 
-    @PutMapping("/customers")
+    @PutMapping("/customer")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCustomer(@RequestBody Customer Customer) {
         repo.save(Customer);
     }
 
-    @DeleteMapping("/customers/{id}")
+    @DeleteMapping("/customer/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable int id) {
         repo.deleteById(id);
     }
 
 
-    @GetMapping("/customers/{id}")
-    public Customer getCustomerById(@PathVariable int id) {
-
+    @GetMapping("/customer/{id}")
+    public Customer getPublisherById(@PathVariable int id){
         Optional<Customer> returnVal = repo.findById(id);
         if (returnVal.isPresent()) {
             return returnVal.get();
@@ -45,9 +44,9 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/customers")
-    public List<Customer> getCustomers() {
-        return repo.findAll();
-    }
 
+    @GetMapping("/customers/{state}")
+    public List<Customer> getCustomerByState(@PathVariable String state) {
+        return repo.findByState(state);
+    }
 }
